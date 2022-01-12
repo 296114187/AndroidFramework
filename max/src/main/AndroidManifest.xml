@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.voidid.max">
+    <application>
+        <meta-data android:name="applovin.sdk.key"
+            android:value="xBZzvlM3Q9zXJKVTuyIJgNZ2ODrIwRSftuOgx5BRe5IPimFMVCTJNGP4TMR5c53vIyoHdkcUrctd43Hsk_7LbV"/>
+        <provider
+            android:authorities="${applicationId}.androidx-startup"
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            tools:node="merge"
+            tools:ignore="MissingClass">
+            <meta-data
+                android:name="${packageName}.ModuleManager"
+                android:value="@string/androidx_startup"/>
+        </provider>
+    </application>
+</manifest>

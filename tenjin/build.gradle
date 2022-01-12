@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion PROP_BUILD_TOOLS_VERSION
+
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    sourceSets.main {
+        res.srcDirs 'res'
+        jniLibs.srcDirs 'libs'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        // tenjin导入的华为OAID库
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+
+//    flavorDimensions 'channel'
+//    productFlavors {
+//        // 谷歌商店
+//        googleplay {
+//            dimension 'channel'
+//        }
+//        // 国内通用包
+//        normalcn {
+//            dimension 'channel'
+//        }
+//        // 抖音APK
+//        douyin {
+//            dimension 'channel'
+//        }
+//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // google服务（用于获取GAID）
+    implementation 'com.google.android.gms:play-services-analytics:17.0.1'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+//    implementation 'com.huawei.hms:ads-identifier:+'
+    implementation project(':core')
+}
