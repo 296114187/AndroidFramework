@@ -60,25 +60,25 @@ public class AppConfig {
     public static String TOP_ON_APP_CHANNEL = AppConfig.CHANNEL;
 
 //    /** Banner广告ID */
-//    public static String BANNER_AD_UNIT_ID = "b61133d65b1bc0";
-//    /** 激励视频广告ID */
-//    public static String REWARD_VIDEO_AD_UNIT_ID = "b61133d64f3ca4";
-//    /** 插屏广告ID */
-//    public static String INTERSTITIAL_AD_UNIT_ID = "b61133d6559c88";
-//    /** 原生广告ID */
-//    public static String NATIVE_AD_UNIT_ID = "b61133d6618a72";
-//    /** 开屏广告 */
-//    public static String SPLASH_AD_UNIT_ID = "b61133d65e33d8";
-    /** Banner广告ID */
-    public static String BANNER_AD_UNIT_ID = "b7a2d915885c4fc0";
+    public static String BANNER_AD_UNIT_ID = "b61133d65b1bc0";
     /** 激励视频广告ID */
-    public static String REWARD_VIDEO_AD_UNIT_ID = "66d411c08872ff0c";
+    public static String REWARD_VIDEO_AD_UNIT_ID = "b61133d64f3ca4";
     /** 插屏广告ID */
-    public static String INTERSTITIAL_AD_UNIT_ID = "17abe47178832a53";
+    public static String INTERSTITIAL_AD_UNIT_ID = "b61133d6559c88";
     /** 原生广告ID */
-    public static String NATIVE_AD_UNIT_ID = "54a19b9da4cc878f";
+    public static String NATIVE_AD_UNIT_ID = "b61133d6618a72";
     /** 开屏广告 */
     public static String SPLASH_AD_UNIT_ID = "b61133d65e33d8";
+    /** Banner广告ID */
+//    public static String BANNER_AD_UNIT_ID = "b7a2d915885c4fc0";
+//    /** 激励视频广告ID */
+//    public static String REWARD_VIDEO_AD_UNIT_ID = "66d411c08872ff0c";
+//    /** 插屏广告ID */
+//    public static String INTERSTITIAL_AD_UNIT_ID = "17abe47178832a53";
+//    /** 原生广告ID */
+//    public static String NATIVE_AD_UNIT_ID = "54a19b9da4cc878f";
+//    /** 开屏广告 */
+//    public static String SPLASH_AD_UNIT_ID = "b61133d65e33d8";
 
 
 

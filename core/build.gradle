@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
+apply from: 'maven_build.gradle'
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
-
 
     defaultConfig {
         minSdkVersion PROP_MIN_SDK_VERSION
@@ -20,53 +20,17 @@ android {
         }
     }
 
+    sourceSets.main {
+        jniLibs.srcDirs 'libs'
+    }
+
     // 支持Lambda表达式
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-
-//    flavorDimensions 'channel'
-//    productFlavors {
-//        // 国内通用包
-//        normalcn {
-//            dimension 'channel'
-//            buildConfigField 'String', 'CHANNEL', '"GAME_ANDROID_COMMON"'
-//            buildConfigField 'String[]', 'MODULE_LIST',
-//                    '{' +
-//                            '"com.ad.topon.AdTopOn",' +
-//                            '"com.analytics.umeng.AnalyticsUmeng",' +
-//                            '"com.attribution.adjust.Attribution",' +
-//                            '"com.attribution.tenjin.Attribution"' +
-//                            '}'
-//        }
-//        // 抖音APK
-//        douyin {
-//            dimension 'channel'
-//            buildConfigField 'String', 'CHANNEL', '"GAME_ANDROID_DOUYIN"'
-//            buildConfigField 'String[]', 'MODULE_LIST',
-//                    '{' +
-//                            '"com.ad.max.AdMax",' +
-//                            '"com.ad.topon.AdTopOn",' +
-//                            '"com.analytics.umeng.AnalyticsUmeng",' +
-//                            '"com.attribution.adjust.Attribution",' +
-//                            '"com.attribution.tenjin.Attribution"' +
-//                            '}'
-//        }
-//        // 谷歌商店
-//        googleplay {
-//            dimension 'channel'
-//            buildConfigField 'String', 'CHANNEL', '"GAME_ANDROID_GOOGLE"'
-//            buildConfigField 'String[]', 'MODULE_LIST',
-//                    '{' +
-//                            '"com.ad.max.AdMax",' +
-//                            '"com.attribution.tenjin.Attribution",' +
-//                            '"com.analytics.firebase.AnalyticsFirebase",' +
-//                            '"com.analytics.gameAnalytics.AnalyticsGameAnalytics"' +
-//                            '}'
-//        }
-//    }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])

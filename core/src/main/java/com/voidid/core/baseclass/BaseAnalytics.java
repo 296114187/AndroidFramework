@@ -2,6 +2,7 @@ package com.voidid.core.baseclass;
 
 
 import static com.voidid.core.enums.EEventNames.EVENT_AD;
+import static com.voidid.core.enums.EEventNames.EVENT_ANALYTICS;
 import static com.voidid.core.enums.EEventNames.EVENT_CURRENCY;
 import static com.voidid.core.enums.EEventNames.EVENT_CUSTOM;
 import static com.voidid.core.enums.EEventNames.EVENT_PAY;
@@ -35,7 +36,7 @@ public abstract class BaseAnalytics extends BaseModule {
         EventManager.on(EVENT_PAY, Pay_CallBack);
         EventManager.on(EVENT_PLOT, Plot_CallBack);
         EventManager.on(EVENT_PROP, Prop_CallBack);
-        EventManager.on(EVENT_CUSTOM, CustomEvent_CallBack);
+        EventManager.on(EVENT_ANALYTICS, CustomEvent_CallBack);
         EventManager.on(EVENT_CURRENCY, Currency_CallBack);
     }
 

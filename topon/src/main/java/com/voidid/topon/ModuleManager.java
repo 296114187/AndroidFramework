@@ -56,7 +56,7 @@ public class ModuleManager extends BaseModule {
      */
     public static void requestPermissionIfNecessary() {
         // 动态获取READ_PHONE_STATE及WRITE_EXTERNAL_STORAGE权限
-        ATChinaSDKHandler.requestPermissionIfNecessary(AppGlobal.getContext());
+//        ATChinaSDKHandler.requestPermissionIfNecessary(AppGlobal.getContext());
     }
 
     /**

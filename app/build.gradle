@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.application'
-    id 'applovin-quality-service'
+//    id 'applovin-quality-service'
     id 'com.google.gms.google-services'
 }
 // AppLovin Max SDK. add by 2021/12/11
-applovin {
-    apiKey "90hT1nNtBKyxOS98Cv9DT8OWJJD3cGz27AaCw7b8fDweMcaJz36XZHiefQCJpeTLhQldM9s_KkV2zTosE4tqdN"
-}
+//applovin {
+//    apiKey "90hT1nNtBKyxOS98Cv9DT8OWJJD3cGz27AaCw7b8fDweMcaJz36XZHiefQCJpeTLhQldM9s_KkV2zTosE4tqdN"
+//}
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
@@ -45,11 +45,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation project(':core')
+
+//    implementation project(':core')
     implementation project(':adjust')
-    implementation project(':tenjin')
-    implementation project(':max')
-    implementation project(':topon')
+//    implementation project(':tenjin')
+//    implementation project(':max')
+//    implementation project(':topon')
 //    implementation project(':firebase')
 //    implementation project(':umeng')
 //    implementation project(':gameAnalytics')

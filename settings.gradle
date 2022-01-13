@@ -2,12 +2,12 @@ rootProject.name = "Framework"
 include ':app'
 include ':core'
 /** ***************** 广告 ******************* **/
-include ':max'
-include ':topon'
+//include ':max'
+//include ':topon'
 /** ***************** 归因 ******************* **/
-include ':tenjin'
+//include ':tenjin'
 include ':adjust'
 /** ***************** 统计 ******************* **/
 include ':umeng'
-include ':firebase'
-include ':gameAnalytics'
+//include ':firebase'
+//include ':gameAnalytics'
