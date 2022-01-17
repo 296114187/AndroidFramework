@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply from: "${rootProject.projectDir}/maven_build.gradle"
+moduleName = 'firebase'
+versionCode = 1
+versionName = "0.0.1"
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()

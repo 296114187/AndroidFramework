@@ -1,5 +1,10 @@
 apply plugin: 'com.android.library'
 
+apply from: "${rootProject.projectDir}/maven_build.gradle"
+moduleName = 'umeng'
+versionCode = 1
+versionName = "0.0.1"
+
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
@@ -31,21 +36,6 @@ android {
         }
     }
 
-//    flavorDimensions 'channel'
-//    productFlavors {
-//        // 谷歌商店
-//        googleplay {
-//            dimension 'channel'
-//        }
-//        // 国内通用包
-//        normalcn {
-//            dimension 'channel'
-//        }
-//        // 抖音APK
-//        douyin {
-//            dimension 'channel'
-//        }
-//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -53,11 +43,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.3.0-rc01'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation project(':core')
 
     // 友盟统计SDK

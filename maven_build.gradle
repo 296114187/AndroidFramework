@@ -1,3 +1,11 @@
+ext {
+    prefixName = 'com.voidid'
+    moduleName = 'frame'
+    packageName = "${prefixName}.${moduleName}"
+    versionCode = 1
+    versionName = "1.0.1"
+    mavenPathUrl = uri("$rootDir/../Maven")
+}
 
 // gradle 7.0以下版本的写法
 //apply plugin: 'maven'
@@ -13,6 +21,7 @@
 //    }
 //}
 
+/* ************************ Maven ************************ */
 // gradle 7.0以上版本的写法
 apply plugin: 'maven-publish'
 afterEvaluate {
@@ -20,18 +29,17 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.voidid.framework'
-                artifactId = 'core'
-                version = '1.0.2'
+                groupId = "${prefixName}"
+                artifactId = "${moduleName}"
+                version = "${versionName}"
             }
         }
 
         repositories {
             maven {
-                allowInsecureProtocol true
+//                allowInsecureProtocol true
 //                name = "nexus" //可选
-//                url = '/Users/dong/Work/Android/maven'
-                url = uri("$rootDir/../Maven")
+                url = mavenPathUrl
 //                credentials {
 //                    username = MAVEN_USERNAME
 //                    password = MAVEN_PASSWORD
@@ -41,11 +49,25 @@ afterEvaluate {
     }
 }
 
+//config release task
+//release {
+//    tagCommitMessage = "[Gradle Release Plugin] - creating tag: "
+//    scmAdapters = [
+//            net.researchgate.release.GitAdapter,
+//    ]
+//}
+
 // 源代码一起打包(不需要打包源代码的不要添加这几行)
 //task androidSourcesJar(type: Jar) {
-//    classifier = 'sources'
 //    from android.sourceSets.main.java.sourceFiles
+//    archiveClassifier.set("sources")
 //}
+
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    archiveClassifier.set("sources")
+//}
+//
 //artifacts {
 //    archives androidSourcesJar
 //}

@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
-apply from: 'maven_build.gradle'
+
+apply from: "${rootProject.projectDir}/maven_build.gradle"
+moduleName = 'core'
+versionCode = 1
+versionName = "0.0.1"
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
@@ -8,9 +12,24 @@ android {
     defaultConfig {
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
+        versionCode versionCode
+        versionName versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        // 替换AndroidManifest中的占位符{packageName}
+//        manifestPlaceholders = [packageName:packageName]
+        // BuildConfig添加常量
+//        buildConfigField "String", "PACKAGE_NAME", "\"${packageName}\""
+        /**
+         * 添加自定义资源
+         * resValue(String type,String name,String value)
+         * type:生成字段的类型(id、string、bool等)
+         * name:生成字段的常量名称
+         * value:生成字段的常量值
+         * 使用方法：R.string.welcome
+         */
+//        resValue 'string', 'welcome','miui'
     }
 
     buildTypes {
@@ -23,14 +42,7 @@ android {
     sourceSets.main {
         jniLibs.srcDirs 'libs'
     }
-
-    // 支持Lambda表达式
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])

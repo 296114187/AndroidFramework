@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.kezong.fat-aar'
 
+apply from: "${rootProject.projectDir}/maven_build.gradle"
+moduleName = 'topon'
+versionCode = 1
+versionName = "0.0.1"
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()

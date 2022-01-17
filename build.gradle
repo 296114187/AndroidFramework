@@ -2,6 +2,7 @@
 buildscript {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
         // AppLovin Max SDK. add by 2021/12/11
         maven { url 'https://artifacts.applovin.com/android' }
@@ -21,11 +22,22 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
-//        maven { url "https://gitee.com/mamamio/maven/raw/master" }
+        maven { url "https://gitee.com/mamamio/maven/raw/master" }
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.gameanalytics.com/release' }
     }
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+subprojects{Project project ->
+//    if (project.toString().indexOf("app") == -1) {
+//        apply from: '../maven_build.gradle'
+//    }
 }
 
 task clean(type: Delete) {
