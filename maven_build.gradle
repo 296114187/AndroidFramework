@@ -6,7 +6,7 @@ ext {
     versionName = "1.0.1"
     mavenPathUrl = uri("$rootDir/../Maven")
 }
-
+/* ************************ Maven ************************ */
 // gradle 7.0以下版本的写法
 //apply plugin: 'maven'
 //uploadArchives {
@@ -21,7 +21,6 @@ ext {
 //    }
 //}
 
-/* ************************ Maven ************************ */
 // gradle 7.0以上版本的写法
 apply plugin: 'maven-publish'
 afterEvaluate {
@@ -48,6 +47,7 @@ afterEvaluate {
         }
     }
 }
+/* ************************ Maven ************************ */
 
 //config release task
 //release {
@@ -56,18 +56,18 @@ afterEvaluate {
 //            net.researchgate.release.GitAdapter,
 //    ]
 //}
-
-// 源代码一起打包(不需要打包源代码的不要添加这几行)
+//
+//// 源代码一起打包(不需要打包源代码的不要添加这几行)
 //task androidSourcesJar(type: Jar) {
 //    from android.sourceSets.main.java.sourceFiles
 //    archiveClassifier.set("sources")
 //}
-
+//
 //task sourcesJar(type: Jar) {
 //    from android.sourceSets.main.java.srcDirs
 //    archiveClassifier.set("sources")
 //}
-//
+
 //artifacts {
 //    archives androidSourcesJar
 //}

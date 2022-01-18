@@ -33,35 +33,11 @@ android {
     fataar {
         transitive = true
     }
-
-//    flavorDimensions 'channel'
-//    productFlavors {
-//        // 谷歌商店
-//        googleplay {
-//            dimension 'channel'
-//        }
-//        // 国内通用包
-//        normalcn {
-//            dimension 'channel'
-//        }
-//        // 抖音APK
-//        douyin {
-//            dimension 'channel'
-//        }
-//    }
-    sourceSets.main {
-        jniLibs.srcDirs 'libs'
-    }
-    // 支持Lambda表达式
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
 }
 
 dependencies {
     embed fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    implementation project(':core')
+    implementation 'com.voidid:core:0.0.1'
 
     // Gradle中要补充Support v7插件的引入，否则会集成失败(compileSdkVersion最低需要28)
     api 'com.android.support:appcompat-v7:28.0.0'

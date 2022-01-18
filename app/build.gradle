@@ -8,6 +8,10 @@ plugins {
 //    apiKey "90hT1nNtBKyxOS98Cv9DT8OWJJD3cGz27AaCw7b8fDweMcaJz36XZHiefQCJpeTLhQldM9s_KkV2zTosE4tqdN"
 //}
 
+ext {
+    isDebug = false
+}
+
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
@@ -28,21 +32,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets.main {
-        jniLibs.srcDirs 'libs'
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-
-//    implementation project(':core')
-    implementation project(':adjust')
-//    implementation project(':tenjin')
-//    implementation project(':max')
-//    implementation project(':topon')
-//    implementation project(':firebase')
-//    implementation project(':umeng')
-//    implementation project(':gameAnalytics')
+    if (isDebug) {
+//        implementation project(':max')
+//        implementation project(':core')
+//        implementation project(':topon')
+//        implementation project(':umeng')
+//        implementation project(':adjust')
+        implementation project(':tenjin')
+//        implementation project(':firebase')
+//        implementation project(':gameAnalytics')
+    } else {
+//        implementation 'com.voidid:max:0.0.1'
+//        implementation 'com.voidid:umeng:0.0.1'
+//        implementation 'com.voidid:topon:0.0.1'
+        implementation 'com.voidid:adjust:0.0.1'
+//        implementation 'com.voidid:tenjin:0.0.3'
+//        implementation 'com.voidid:firebase:0.0.1'
+        implementation 'com.voidid:gameAnalytics:0.0.1'
+    }
 }
