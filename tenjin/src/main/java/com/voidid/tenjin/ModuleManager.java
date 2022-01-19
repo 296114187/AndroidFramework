@@ -17,7 +17,9 @@ public class ModuleManager extends BaseModule {
     /**
      * 初始化 SDK
      */
-    public void init() {
+    @Override
+    protected void init() {
+        super.init();
         DebugTool.d(TAG, "tenjin init");
         TenjinSDK instance = TenjinSDK.getInstance(AppGlobal.getContext(), AppConfig.tenjinApiKey);
         // 设置发布的应用商店，GooglePlay（谷歌商店）、amazon（亚马逊商店）、other（其它渠道，例：国内）

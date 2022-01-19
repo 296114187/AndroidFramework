@@ -25,34 +25,43 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+//    implementation files('libs/tenjin-0.0.5.aar')
     if (isDebug) {
 //        implementation project(':max')
 //        implementation project(':core')
 //        implementation project(':topon')
 //        implementation project(':umeng')
 //        implementation project(':adjust')
-        implementation project(':tenjin')
+//        implementation project(':tenjin')
 //        implementation project(':firebase')
 //        implementation project(':gameAnalytics')
     } else {
+//        implementation 'com.voidid:core:0.0.1'
 //        implementation 'com.voidid:max:0.0.1'
 //        implementation 'com.voidid:umeng:0.0.1'
 //        implementation 'com.voidid:topon:0.0.1'
-        implementation 'com.voidid:adjust:0.0.1'
-//        implementation 'com.voidid:tenjin:0.0.3'
+//        implementation 'com.voidid:adjust:0.0.1'
+        implementation 'com.voidid:tenjin:0.0.11'
 //        implementation 'com.voidid:firebase:0.0.1'
-        implementation 'com.voidid:gameAnalytics:0.0.1'
+//        implementation 'com.voidid:gameAnalytics:0.0.1'
     }
 }

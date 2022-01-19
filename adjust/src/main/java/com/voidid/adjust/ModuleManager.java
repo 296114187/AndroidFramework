@@ -10,7 +10,7 @@ import com.voidid.core.BaseModule;
 import com.voidid.core.tools.DebugTool;
 
 /**
- * 归因类
+ * 归因类adjust
  * https://help.adjust.com/zh/article/get-started-android-sdk
  */
 public class ModuleManager extends BaseModule {
