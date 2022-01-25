@@ -1,8 +1,5 @@
 package com.voidid.core.tools;
 
-import android.app.Activity;
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

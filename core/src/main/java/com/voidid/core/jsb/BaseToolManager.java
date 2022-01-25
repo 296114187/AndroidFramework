@@ -46,8 +46,8 @@ public class BaseToolManager {
     public static String getVersion() {
         PackageManager pm = AppGlobal.getContext().getPackageManager();
         try {
-            PackageInfo packinfo = pm.getPackageInfo(BaseToolManager.getPackageName(), 0);
-            return packinfo.versionName;
+            PackageInfo packInfo = pm.getPackageInfo(BaseToolManager.getPackageName(), 0);
+            return packInfo.versionName;
         } catch (Exception e) {
             e.printStackTrace();
         }

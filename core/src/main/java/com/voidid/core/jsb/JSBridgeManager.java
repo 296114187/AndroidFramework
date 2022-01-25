@@ -7,12 +7,10 @@ import com.voidid.core.tools.DataTool;
 import com.voidid.core.tools.DebugTool;
 import com.voidid.core.enums.ADEventType;
 import com.voidid.core.enums.ADType;
-import com.voidid.core.enums.EEventNames;
+import com.voidid.core.enums.EventNames;
 import com.voidid.core.event.EventManager;
 
 import org.json.JSONObject;
-
-import java.util.Map;
 
 public class JSBridgeManager {
     private static final String TAG = JSBridgeManager.class.getName();
@@ -64,7 +62,7 @@ public class JSBridgeManager {
     }
 
     private static void initAdCallback() {
-        EventManager.on(EEventNames.EVENT_AD, (String eventName, JSONObject data)->{
+        EventManager.on(EventNames.EVENT_AD, (String eventName, JSONObject data)->{
             String className = "", methodName = "";
             boolean isError = false;
             Log.i(TAG, "initAdCallback: " + data.toString());
@@ -100,7 +98,7 @@ public class JSBridgeManager {
                     }
                     postMessageToJS(jsCode);
                 } else {
-                    DebugTool.d(TAG, EEventNames.EVENT_AD, "callback", jsCode);
+                    DebugTool.d(TAG, EventNames.EVENT_AD, "callback", jsCode);
                 }
             } catch (Exception ex) {
                 DebugTool.e(TAG, ex.getMessage());
@@ -121,7 +119,7 @@ public class JSBridgeManager {
 //        jsonObj.put("adType", ADType.BANNER);
 //        jsonObj.put("adEventType", ADEventType.CREATE);
 
-        EventManager.emit(EEventNames.EVENT_AD, jsonObj);
+        EventManager.emit(EventNames.EVENT_AD, jsonObj);
     }
 
     /**
@@ -133,6 +131,6 @@ public class JSBridgeManager {
         DebugTool.i(TAG, "call native emitEventAD:" + jsonStr);
 
         JSONObject jsonObj = DataTool.parseJson(jsonStr);
-        EventManager.emit(EEventNames.EVENT_ANALYTICS, jsonObj);
+        EventManager.emit(EventNames.EVENT_ANALYTICS, jsonObj);
     }
 }

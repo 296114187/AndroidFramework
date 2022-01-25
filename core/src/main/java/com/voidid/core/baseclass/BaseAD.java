@@ -3,14 +3,13 @@ package com.voidid.core.baseclass;
 
 import com.voidid.core.enums.ADEventType;
 import com.voidid.core.enums.ADType;
-import com.voidid.core.enums.EEventNames;
+import com.voidid.core.enums.EventNames;
 import com.voidid.core.event.EventManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public abstract class BaseAD {
@@ -89,7 +88,7 @@ public abstract class BaseAD {
             for (String key : params.keySet()) { //遍历map
                 data.put(key, params.get(key));
             }
-            EventManager.emit(EEventNames.EVENT_AD, data);
+            EventManager.emit(EventNames.EVENT_AD, data);
         } catch (JSONException e) {
             e.printStackTrace();
         }

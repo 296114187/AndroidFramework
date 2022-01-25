@@ -5,8 +5,8 @@ import android.util.Log;
 import org.json.JSONObject;
 
 public class DebugTool {
-    private static String TAG = DebugTool.class.getName();
-    private static String TAG_LOG = "[android-native-api]";
+    private static final String TAG = DebugTool.class.getName();
+    private static final String TAG_LOG = "[android-native-api]";
 
     public static void d(String tag, String content) {
         Log.d(tag == null ? TAG : tag, TAG_LOG + content);

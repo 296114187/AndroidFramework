@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 事件管理
+ */
 public class EventManager {
     @SuppressLint("StaticFieldLeak")
     private static EventManager _ins;
@@ -49,9 +52,6 @@ public class EventManager {
         for (EventFunction item : eventFunctions) {
             if (!item.equals(func)) continue;
             eventFunctions.remove(item);
-//            if (eventFunctions.size() <= 0){
-//                ins().map.remove(eventFunctions);
-//            }
             return;
         }
     }

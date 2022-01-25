@@ -1,49 +1,11 @@
-plugins {
-    id 'com.android.library'
-    id 'com.kezong.fat-aar'
-}
-apply from: "${rootProject.projectDir}/maven_build.gradle"
-moduleName = 'tenjin'
-versionCode = 11
-versionName = "0.0.11"
-
-android {
-    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion PROP_BUILD_TOOLS_VERSION
-
-    defaultConfig {
-        minSdkVersion PROP_MIN_SDK_VERSION
-        targetSdkVersion PROP_TARGET_SDK_VERSION
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
+apply plugin: 'com.android.library'
+apply from: "${rootProject.projectDir}/common.gradle"
+version = "0.0.1"
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
-    embed (name:'tenjin',ext:'aar')
+//    embed (name:'tenjin',ext:'aar')
     // google服务（用于获取GAID）
-    implementation 'com.google.android.gms:play-services-analytics:17.0.1'
-    implementation 'com.android.installreferrer:installreferrer:2.2'
+    implementation dependenciesList.googleAnalytics
+    implementation dependenciesList.installreferrer
 //    implementation 'com.huawei.hms:ads-identifier:+'
-    api 'com.voidid:core:0.0.1'
 }

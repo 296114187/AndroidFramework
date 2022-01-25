@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.startup.Initializer;
 
-import com.voidid.core.enums.EEventNames;
+import com.voidid.core.enums.EventNames;
 import com.voidid.core.event.EventFunction;
 import com.voidid.core.event.EventManager;
 
@@ -17,12 +17,15 @@ import java.util.List;
  */
 public abstract class BaseModule implements Initializer<BaseModule> {
     public static String TAG = BaseModule.class.getName();
+    /**
+     * 依赖模块列表
+     */
     protected List<Class<? extends Initializer<?>>> dependencies = new ArrayList<>();
 
     @NonNull
     @Override
     public BaseModule create(@NonNull Context mContext) {
-        EventManager.on(EEventNames.ACTIVITY_ON_CREATE, onCreate);
+        EventManager.on(EventNames.ACTIVITY_ON_CREATE, onCreate);
         init();
         return this;
     }
@@ -39,7 +42,7 @@ public abstract class BaseModule implements Initializer<BaseModule> {
      */
     private final EventFunction onCreate = (eventName, data) -> _onActivityCreate();
     private void _onActivityCreate() {
-        EventManager.off(EEventNames.ACTIVITY_ON_CREATE, onCreate);
+        EventManager.off(EventNames.ACTIVITY_ON_CREATE, onCreate);
         onActivityCreate();
     }
 

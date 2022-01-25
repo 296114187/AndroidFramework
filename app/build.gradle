@@ -1,13 +1,4 @@
-plugins {
-    id 'com.android.application'
-//    id 'applovin-quality-service'
-    id 'com.google.gms.google-services'
-}
-// AppLovin Max SDK. add by 2021/12/11
-//applovin {
-//    apiKey "90hT1nNtBKyxOS98Cv9DT8OWJJD3cGz27AaCw7b8fDweMcaJz36XZHiefQCJpeTLhQldM9s_KkV2zTosE4tqdN"
-//}
-
+apply plugin: 'com.android.application'
 ext {
     isDebug = false
 }
@@ -21,9 +12,12 @@ android {
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86'
+        }
     }
     sourceSets.main {
         jniLibs.srcDirs = ['libs']
@@ -39,6 +33,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //当项目中依赖的第三方库越来越多时，有可能会出现两个依赖库中存在同一个（名称）文件。如果这样，Gradle在打包时就会提示错误（警告）。那么就可以根据提示，然后使用以下方法将重复的文件剔除，比较常用的是通过exclude去除重复的文件
+    packagingOptions { //打包时的相关配置
+//        exclude "/libs/*.jar"
+    }
 }
 
 dependencies {
@@ -47,7 +46,7 @@ dependencies {
 //    implementation files('libs/tenjin-0.0.5.aar')
     if (isDebug) {
 //        implementation project(':max')
-//        implementation project(':core')
+        implementation project(':core')
 //        implementation project(':topon')
 //        implementation project(':umeng')
 //        implementation project(':adjust')
@@ -60,7 +59,7 @@ dependencies {
 //        implementation 'com.voidid:umeng:0.0.1'
 //        implementation 'com.voidid:topon:0.0.1'
 //        implementation 'com.voidid:adjust:0.0.1'
-        implementation 'com.voidid:tenjin:0.0.11'
+//        implementation 'com.voidid:tenjin:0.0.12'
 //        implementation 'com.voidid:firebase:0.0.1'
 //        implementation 'com.voidid:gameAnalytics:0.0.1'
     }

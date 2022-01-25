@@ -1,0 +1,121 @@
+/** 本地aar合并插件（说明文档：https://github.com/kezong/fat-aar-android/blob/master/README_CN.md） **/
+apply plugin: 'com.kezong.fat-aar'
+/** 组织 **/
+group = 'com.voidid'
+
+// 扩展属性
+ext {
+    /** 调试模式 **/
+    isDebug = true
+    /** maven仓库地址 **/
+    mavenPathUrl = uri("$rootDir/../Maven")
+    /** 公共依赖 **/
+    dependenciesList = [
+            /** 框架基础库 **/
+            lib_core        : 'com.voidid:core:0.0.1',
+            /** GooglePlay安装来源追踪 **/
+            installreferrer : 'com.android.installreferrer:installreferrer:2.2',
+            /** google埋点分析（也用于获取gaid） **/
+            googleAnalytics : 'com.google.android.gms:play-services-analytics:17.0.1',
+            /** google广告标识（也用于获取gaid） **/
+            googleIdentifier: 'com.google.android.gms:play-services-ads-identifier:17.1.0',
+    ]
+}
+
+android {
+    /** 编译SDK版本 **/
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    /** 编译SDK版本 **/
+    buildToolsVersion PROP_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        /** 最低支持SDK版本 **/
+        minSdkVersion PROP_MIN_SDK_VERSION
+        /** 目标SDK版本 **/
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            /** 混淆开关 **/
+            minifyEnabled false
+            /** 混淆规则文件 **/
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    /** 支持Java 1.8（为了使用Lambda） **/
+    compileOptions {
+        /** JDK版本 **/
+        sourceCompatibility JavaVersion.VERSION_1_8
+        /** 虚拟机兼容版本 **/
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    if (project.getName() != "core") {
+        /** 引用框架的基础库 **/
+        api dependenciesList.lib_core
+    }
+
+    /** 导入本地库 **/
+    String libsDir = project.getProjectDir().getAbsolutePath() + '/libs/'
+    if (file(libsDir).exists()) {
+        File file = new File(libsDir)
+        file.eachFileRecurse {
+            String fileName = it.getName()
+            int index = fileName.lastIndexOf(".")
+            String name = fileName.substring(0, index)
+            String type = fileName.substring(index + 1, fileName.length())
+            embed(name: name, ext: type)
+        }
+    }
+    /** 导入本地库 **/
+}
+
+/* ************************ Maven ************************ */
+apply plugin: 'maven-publish'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = this.group
+                artifactId = this.name
+                version = this.version
+            }
+        }
+        repositories {
+            maven {
+//                allowInsecureProtocol true
+//                name = "nexus" //可选
+                url = mavenPathUrl
+//                credentials {
+//                    username = MAVEN_USERNAME
+//                    password = MAVEN_PASSWORD
+//                }
+            }
+        }
+    }
+}
+
+fataar {
+    /**
+     * 如果transitive为true，本地jar模块和远程库的依赖将被嵌入。(局部aar模块不支持)
+     * 如果transitive为false，只需嵌入第一级依赖
+     * 局部aar项目不支持传递，总是嵌入第一层
+     * 默认值为false
+     * @since 1.3.0
+     */
+    transitive = true
+}
+/* ************************ Maven ************************ */

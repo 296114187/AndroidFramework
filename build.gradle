@@ -1,45 +1,30 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
         // AppLovin Max SDK. add by 2021/12/11
         maven { url 'https://artifacts.applovin.com/android' }
-        maven { url 'https://maven.gameanalytics.com/release' }
-        maven { url "https://gitee.com/mamamio/maven/raw/master" }
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:4.1.3'
         // AppLovin Max SDK. add by 2021/12/11
         classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:+"
         // GoogleServices
         classpath 'com.google.gms:google-services:4.3.10'
         // AAR合并工具
-        classpath 'com.github.kezong:fat-aar:1.3.5'
+        classpath 'com.github.kezong:fat-aar:1.3.6'
     }
 }
 
 allprojects {
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
-        maven { url "https://jitpack.io" }
-        maven { url 'https://maven.gameanalytics.com/release' }
+//        maven { url "https://jitpack.io" }
         maven { url "https://gitee.com/mamamio/maven/raw/master" }
     }
-//    tasks.withType(JavaCompile) {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-//    }
-}
-
-subprojects{Project project ->
-//    if (project.toString().indexOf("app") == -1) {
-//        apply from: '../maven_build.gradle'
-//    }
 }
 
 task clean(type: Delete) {

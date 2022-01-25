@@ -3,7 +3,7 @@ package com.voidid.core.enums;
 /**
  * 事件名称定义
  */
-public class EEventNames {
+public class EventNames {
 
     /** Activity执行创建回调 */
     public static final String ACTIVITY_ON_CREATE = "ACTIVITY_ON_CREATE";

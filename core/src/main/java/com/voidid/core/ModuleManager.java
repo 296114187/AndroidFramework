@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.startup.Initializer;
 
-import com.voidid.core.enums.EEventNames;
+import com.voidid.core.enums.EventNames;
 import com.voidid.core.event.EventManager;
 import com.voidid.core.jsb.DeviceManager;
 import com.voidid.core.jsb.JSBridgeManager;
@@ -61,7 +61,7 @@ public class ModuleManager extends BaseModule {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
                     object.put("SavedInstanceState", savedInstanceState);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_CREATE, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_CREATE, object);
                     Log.d(TAG, "onActivityCreated: " + AppGlobal.mainActivity.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -73,7 +73,7 @@ public class ModuleManager extends BaseModule {
                 try {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_START, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_START, object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -84,7 +84,7 @@ public class ModuleManager extends BaseModule {
                 try {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_RESUME, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_RESUME, object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -95,7 +95,7 @@ public class ModuleManager extends BaseModule {
                 try {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_PAUSE, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_PAUSE, object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -106,7 +106,7 @@ public class ModuleManager extends BaseModule {
                 try {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_STOP, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_STOP, object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -122,7 +122,7 @@ public class ModuleManager extends BaseModule {
                 try {
                     JSONObject object = new JSONObject();
                     object.put("Activity", activity);
-                    EventManager.emit(EEventNames.ACTIVITY_ON_DESTROY, object);
+                    EventManager.emit(EventNames.ACTIVITY_ON_DESTROY, object);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -1,13 +1,12 @@
 package com.voidid.core.baseclass;
 
 
-import static com.voidid.core.enums.EEventNames.EVENT_AD;
-import static com.voidid.core.enums.EEventNames.EVENT_ANALYTICS;
-import static com.voidid.core.enums.EEventNames.EVENT_CURRENCY;
-import static com.voidid.core.enums.EEventNames.EVENT_CUSTOM;
-import static com.voidid.core.enums.EEventNames.EVENT_PAY;
-import static com.voidid.core.enums.EEventNames.EVENT_PLOT;
-import static com.voidid.core.enums.EEventNames.EVENT_PROP;
+import static com.voidid.core.enums.EventNames.EVENT_AD;
+import static com.voidid.core.enums.EventNames.EVENT_ANALYTICS;
+import static com.voidid.core.enums.EventNames.EVENT_CURRENCY;
+import static com.voidid.core.enums.EventNames.EVENT_PAY;
+import static com.voidid.core.enums.EventNames.EVENT_PLOT;
+import static com.voidid.core.enums.EventNames.EVENT_PROP;
 
 import com.voidid.core.BaseModule;
 import com.voidid.core.enums.ADEventType;

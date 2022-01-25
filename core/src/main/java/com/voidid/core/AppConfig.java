@@ -1,7 +1,5 @@
 package com.voidid.core;
 
-import com.voidid.core.enums.EDBType;
-
 public class AppConfig {
     // 是否启用调试日志
     public static boolean ENABLE_DEBUG_LOG = false;
@@ -22,7 +20,6 @@ public class AppConfig {
     // 【数据库】
     //****************************************************
     /** 启用的数据库类型 */
-    public static EDBType enableDBType = EDBType.SQLite;
 
 
 

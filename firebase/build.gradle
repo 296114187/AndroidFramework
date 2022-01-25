@@ -1,39 +1,30 @@
 apply plugin: 'com.android.library'
-apply from: "${rootProject.projectDir}/maven_build.gradle"
-moduleName = 'firebase'
-versionCode = 1
-versionName = "0.0.1"
-
-android {
-    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion PROP_BUILD_TOOLS_VERSION
-
-
-    defaultConfig {
-        minSdkVersion PROP_MIN_SDK_VERSION
-        targetSdkVersion PROP_TARGET_SDK_VERSION
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+apply from: "${rootProject.projectDir}/common.gradle"
+version = "0.0.1"
+/**
+ * 查找带有‘google-services.json’文件的project，并添加依赖
+ * @return
+ */
+def addPlugin() {
+    boolean hasGoogleConfig = false
+    getRootProject().getSubprojects().each {
+        String filePath = it.getProjectDir().getAbsolutePath() + '/google-services.json'
+        if (file(filePath).exists()){
+            hasGoogleConfig = true
+            it.pluginManager.apply('com.google.gms.google-services')
         }
     }
+    if (!hasGoogleConfig) {
+        println('======================== FireBase配置错误 =================================')
+        println('当前库无法正常运行，请根据文档配置项目')
+        println('请在主运行Project（一般是“APP”）根目录下添加“google-services.json”配置文件')
+        println('==========================================================================')
+    }
 }
+addPlugin()
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.voidid:core:0.0.1'
-
+//    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
     // Google Analytics

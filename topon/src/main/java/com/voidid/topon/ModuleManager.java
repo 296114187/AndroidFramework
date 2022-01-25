@@ -77,12 +77,13 @@ public class ModuleManager extends BaseModule {
      */
     public static void preloadAd() {
         DebugTool.d(TAG, "preload AD.");
-        new Handler().postDelayed(()->{
-            RewardedVideoAd.getInstance(AppConfig.REWARD_VIDEO_AD_UNIT_ID).show();
-//        InterstitialAd.getInstance(AppConfig.INTERSTITIAL_AD_UNIT_ID);
-//        BannerAd.getInstance(AppConfig.BANNER_AD_UNIT_ID, null);
-//        NativeAd.getInstance(AppConfig.NATIVE_AD_UNIT_ID);
-        }, 5000);
+//        RewardedVideoAd.getInstance()
+//        new Handler().postDelayed(()->{
+//            RewardedVideoAd.getInstance(AppConfig.REWARD_VIDEO_AD_UNIT_ID).show();
+//            InterstitialAd.getInstance(AppConfig.INTERSTITIAL_AD_UNIT_ID);
+//            BannerAd.getInstance(AppConfig.BANNER_AD_UNIT_ID, null);
+//            NativeAd.getInstance(AppConfig.NATIVE_AD_UNIT_ID);
+//        }, 5000);
     }
 
     private static void showSplashAd() {
