@@ -1,5 +1,3 @@
-/** 本地aar合并插件（说明文档：https://github.com/kezong/fat-aar-android/blob/master/README_CN.md） **/
-apply plugin: 'com.kezong.fat-aar'
 /** 组织 **/
 group = 'com.voidid'
 
@@ -7,6 +5,10 @@ group = 'com.voidid'
 ext {
     /** 调试模式 **/
     isDebug = true
+    /** 是否AAR合并 **/
+    isAAR = true
+    /** 是否发布Maven **/
+    isMaven = true
     /** maven仓库地址 **/
     mavenPathUrl = uri("$rootDir/../Maven")
     /** 公共依赖 **/
@@ -20,6 +22,21 @@ ext {
             /** google广告标识（也用于获取gaid） **/
             googleIdentifier: 'com.google.android.gms:play-services-ads-identifier:17.1.0',
     ]
+}
+
+/** 本地aar合并插件（说明文档：https://github.com/kezong/fat-aar-android/blob/master/README_CN.md） **/
+if (isAAR) {
+    apply plugin: 'com.kezong.fat-aar'
+    fataar {
+        /**
+         * 如果transitive为true，本地jar模块和远程库的依赖将被嵌入。(局部aar模块不支持)
+         * 如果transitive为false，只需嵌入第一级依赖
+         * 局部aar项目不支持传递，总是嵌入第一层
+         * 默认值为false
+         * @since 1.3.0
+         */
+        transitive = true
+    }
 }
 
 android {
@@ -62,60 +79,56 @@ repositories {
 }
 
 dependencies {
-    if (project.getName() != "core") {
+    if (project.name != "core") {
         /** 引用框架的基础库 **/
         api dependenciesList.lib_core
     }
 
     /** 导入本地库 **/
-    String libsDir = project.getProjectDir().getAbsolutePath() + '/libs/'
-    if (file(libsDir).exists()) {
-        File file = new File(libsDir)
-        file.eachFileRecurse {
-            String fileName = it.getName()
-            int index = fileName.lastIndexOf(".")
-            String name = fileName.substring(0, index)
-            String type = fileName.substring(index + 1, fileName.length())
-            embed(name: name, ext: type)
+    if (isAAR) {
+        // 获取当前project的libs文件夹地址
+        String libsDir = project.getProjectDir().getAbsolutePath() + '/libs/'
+        if (file(libsDir).exists()) {
+            File file = new File(libsDir)
+            file.eachFileRecurse {
+                String fileName = it.getName()
+                int index = fileName.lastIndexOf(".")
+                String name = fileName.substring(0, index)
+                String type = fileName.substring(index + 1, fileName.length())
+                embed(name: name, ext: type)
+            }
         }
+    } else {
+        implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     }
     /** 导入本地库 **/
 }
 
 /* ************************ Maven ************************ */
-apply plugin: 'maven-publish'
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = this.group
-                artifactId = this.name
-                version = this.version
+if (isMaven) {
+    apply plugin: 'maven-publish'
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                    groupId = this.group    // 不知道正式名称叫啥，不过跟包名一样使用倒序域名即，“com.xxx.xxx”
+                    artifactId = this.name  // 库名称
+                    version = this.version  // 版本号
+                }
             }
-        }
-        repositories {
-            maven {
-//                allowInsecureProtocol true
-//                name = "nexus" //可选
-                url = mavenPathUrl
-//                credentials {
-//                    username = MAVEN_USERNAME
-//                    password = MAVEN_PASSWORD
-//                }
+            repositories {
+                maven {
+    //                allowInsecureProtocol true    // 默认为false，需要使用https的URL，开启后可支持http
+    //                name = "nexus"                // 名称，可选
+                    url = mavenPathUrl              // 发布到目录，uri("$rootDir/../Maven")为与项目同级的Maven目录
+    //                credentials {
+    //                    username = MAVEN_USERNAME // Maven仓库账户，本地仓库不需要
+    //                    password = MAVEN_PASSWORD // Maven仓库密码，本地仓库不需要
+    //                }
+                }
             }
         }
     }
-}
-
-fataar {
-    /**
-     * 如果transitive为true，本地jar模块和远程库的依赖将被嵌入。(局部aar模块不支持)
-     * 如果transitive为false，只需嵌入第一级依赖
-     * 局部aar项目不支持传递，总是嵌入第一层
-     * 默认值为false
-     * @since 1.3.0
-     */
-    transitive = true
 }
 /* ************************ Maven ************************ */
