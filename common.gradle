@@ -1,3 +1,4 @@
+apply plugin: 'com.github.dcendents.android-maven'
 /** 组织 **/
 group = 'com.voidid'
 
@@ -106,29 +107,44 @@ dependencies {
 
 /* ************************ Maven ************************ */
 if (isMaven) {
-    apply plugin: 'maven-publish'
-    afterEvaluate {
-        publishing {
-            publications {
-                release(MavenPublication) {
-                    from components.release
-                    groupId = this.group    // 不知道正式名称叫啥，不过跟包名一样使用倒序域名即，“com.xxx.xxx”
-                    artifactId = this.name  // 库名称
-                    version = this.version  // 版本号
-                }
-            }
-            repositories {
-                maven {
-    //                allowInsecureProtocol true    // 默认为false，需要使用https的URL，开启后可支持http
-    //                name = "nexus"                // 名称，可选
-                    url = mavenPathUrl              // 发布到目录，uri("$rootDir/../Maven")为与项目同级的Maven目录
-    //                credentials {
-    //                    username = MAVEN_USERNAME // Maven仓库账户，本地仓库不需要
-    //                    password = MAVEN_PASSWORD // Maven仓库密码，本地仓库不需要
-    //                }
-                }
-            }
-        }
-    }
+//    apply plugin: 'maven'
+//    uploadArchives {
+//        repositories {
+//            mavenDeployer {
+//                pom.groupId = this.group
+//                pom.artifactId = this.name
+//                pom.version = this.version
+//                pom.packaging ='aar'
+//                repository(url: mavenPathUrl) {
+////                    authentication(userName: Authentication_UserName, password: Authentication_Password)
+//                }
+//            }
+//        }
+//    }
+
+//    apply plugin: 'maven-publish'
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                release(MavenPublication) {
+//                    from components.release
+//                    groupId = this.group    // 不知道正式名称叫啥，不过跟包名一样使用倒序域名即，“com.xxx.xxx”
+//                    artifactId = this.name  // 库名称
+//                    version = this.version  // 版本号
+//                }
+//            }
+//            repositories {
+//                maven {
+//    //                allowInsecureProtocol true    // 默认为false，需要使用https的URL，开启后可支持http
+//    //                name = "nexus"                // 名称，可选
+//                    url = mavenPathUrl              // 发布到目录，uri("$rootDir/../Maven")为与项目同级的Maven目录
+//    //                credentials {
+//    //                    username = MAVEN_USERNAME // Maven仓库账户，本地仓库不需要
+//    //                    password = MAVEN_PASSWORD // Maven仓库密码，本地仓库不需要
+//    //                }
+//                }
+//            }
+//        }
+//    }
 }
 /* ************************ Maven ************************ */
